@@ -1,0 +1,9 @@
+﻿
+td img {
+    max-height: 200px;
+    aspect-ratio: 1/1;
+}
+
+.logo-container {
+    height: 120px;
+}

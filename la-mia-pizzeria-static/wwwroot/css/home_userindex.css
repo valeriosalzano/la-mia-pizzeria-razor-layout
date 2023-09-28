@@ -1,0 +1,11 @@
+﻿header {
+    background-color: orangered;
+}
+
+header .nav-link {
+    color: white;
+}
+
+.logo-container {
+    height: 120px;
+}
