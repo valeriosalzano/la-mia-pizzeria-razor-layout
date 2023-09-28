@@ -3,8 +3,125 @@
 @{
     ViewData["Title"] = "Home page";
 }
+<h1> Esercizi: </h1>
+<ul>
+    <li>
+        <h4>
+        1. Dichiarare una variabile valorizzandola con il nostro nome.
+        Dichiarare un'altra variabile valorizzandola con il nostro cognome.
+        Stampare il nostro nome e cognome all'interno di un tag h2.
+        </h4>
+        @{
+            string name = "Valerio";
+            string surname = "Salzano";
+        }
+        <h2>@name @surname</h2>
+    </li>
+    <li>
+        <h4>
+        2. Creare una funzione che stampa la somma dei numeri che vanno da 1 a n (con n passato come parametro - n incluso)
+        Stampare dentro uno span il risultato.
+        </h4>
+        @{
+            int n = 9;
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+            int PrintNumbersSum(int n)
+            {
+                int sum = 0;
+                for (int i = 0; i <= n; i++)
+                {
+                    sum += i;
+                }
+                return sum;
+            }
+        }
+        <p>
+            La somma dei primi @n numeri è <span>@PrintNumbersSum(n)</span>
+        </p> 
+    </li>
+    <li>
+        <h4>
+        3. Contare quante volte la lettera a è presente nalla frase "nel mezzo del cammin di nostra vita" e stampare questo valore in pagina
+        </h4>
+        @{
+            string checkedString = "nel mezzo del cammin di nostra vita";
+
+            int occurrences = 0;
+            foreach (char letter in checkedString)
+                if ($"{letter}" == "a")
+                    occurrences++;
+        }
+        <p>Ho contato @occurrences "a" nella frase "@checkedString"</p>
+    </li>
+    <li>
+        <h4>
+        4. Creare una List<int> di 20 numeri interi (generati random da 1 a 90, 1 e 90 inclusi) e mostrare in pagina solo i numeri compresi tra 20 e 70
+        </h4>
+        @{
+
+            List<int> CreateRndNumbersList(int n)
+            {
+                List<int> rndNumbers = new List<int>();
+                int i = 0;
+                while(i < 20)
+                {
+                    int rndNumber = Random.Shared.Next(1, 91);
+                    if (!rndNumbers.Contains(rndNumber))
+                    {
+                        rndNumbers.Add(rndNumber);
+                        i++;
+                    }
+                }
+                return rndNumbers;
+            }
+
+            string PrintNumbersBetween(int min, int max, List<int> list)
+            {
+                int i = 0;
+                string output = "";
+                foreach (int element in list)
+                {
+                    if(element >= min && element <= max)
+                    if (i < list.Count)
+                        output += element + " ";
+                    else
+                        output += element;
+                    i++;
+                }
+                return output;
+            }
+        }
+        <p>
+            @PrintNumbersBetween(20,70,CreateRndNumbersList(20))
+        </p>
+    </li>
+    <li>
+        <h4>
+        5. Stampare in pagina la data e l'ora attuale (usando la classe DateTime) con il formato anno-mese-giorno ore:minuti:secondi
+        </h4>
+        <p>
+        @DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+        </p>
+    </li>
+    <li>
+        <h4>
+        6. Partendo dalla data di oggi (usando la classe DateTime) stampare in pagina
+        </h4>
+        <ol>
+            <li>
+                <h5> a. la data di 7 giorni fa </h5>
+                @DateTime.Now.AddDays(-7);
+            </li>
+            <li>
+                <h5> b. che giorno della settimana è oggi (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...) </h5>
+                <p>
+                    Oggi è @DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("it-IT"))
+                </p>
+             </li>
+            <li>
+            <h5>c. che giorno della settimana sarà nello stesso giorno e mese di oggi ma tra un anno (il risultato dovrà essere il nome del giorno (Lunedì, Martedì, ...)</h5>
+                <p>Tra un anno il giorno @DateTime.Now.ToString("dd MMMM") ricadrà di @DateTime.Now.AddYears(1).ToString("dddd", new System.Globalization.CultureInfo("it-IT"))</p>
+            </li>
+        </ol>  
+    </li>
+</ul>
