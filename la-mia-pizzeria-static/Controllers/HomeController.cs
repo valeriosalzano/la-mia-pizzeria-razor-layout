@@ -18,7 +18,7 @@ namespace la_mia_pizzeria_static.Controllers
             return View();
         }
 
-        public IActionResult UserIndex()
+        public IActionResult AdminIndex()
         {
             return View();
         }
